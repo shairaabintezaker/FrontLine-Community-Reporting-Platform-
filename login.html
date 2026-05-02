@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • Frontline</title>
+  <link rel="stylesheet" href="auth-center.css" />
+</head>
+<body>
+
+<div class="center">
+  <div class="card">
+    <div class="logo">Frontline</div>
+
+    <p id="msg" class="msg"></p>
+
+    <form action="php/login.php" method="POST">
+      <input class="in" name="user" type="text" placeholder="Email / Username" required />
+      <input class="in" name="password" type="password" placeholder="Password" required />
+
+      <button class="btn" type="submit">Log In</button>
+
+      <a class="link" href="#">Forgot password?</a>
+
+      <div class="or"><span>or</span></div>
+
+      <a class="btn alt" href="register.html">Create New Account</a>
+    </form>
+  </div>
+
+  <div class="mini-foot">© 2025 Frontline • Privacy • Terms</div>
+</div>
+
+<script>
+  const p = new URLSearchParams(location.search);
+  const msg = document.getElementById("msg");
+
+  if (p.get("err")) { msg.textContent = p.get("err"); msg.style.display = "block"; }
+  if (p.get("msg")) { msg.textContent = p.get("msg"); msg.style.display = "block"; }
+</script>
+
+</body>
+</html>
