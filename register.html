@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account • Frontline</title>
+  <link rel="stylesheet" href="auth-center.css" />
+</head>
+<body>
+
+<div class="center">
+  <div class="card">
+    <div class="title">
+      <div class="logo sm">Frontline</div>
+      <h2>Create Account</h2>
+    </div>
+
+    <!-- message (error) -->
+    <p id="msg" class="msg"></p>
+
+    <!-- REAL register form -->
+    <form action="php/register.php" method="POST" onsubmit="return checkPass()">
+      <input class="in" name="fullName" type="text" placeholder="Full name" required />
+      <input class="in" name="username" type="text" placeholder="Username" required />
+      <input class="in" name="email" type="email" placeholder="Email" required />
+      <input class="in" name="phone" type="text" placeholder="Phone" />
+      <input class="in" type="text" placeholder="Address (Area, City) (optional)" />
+
+      <input class="in" id="p1" name="password" type="password" placeholder="New password" required />
+      <input class="in" id="p2" type="password" placeholder="Confirm password" required />
+
+      <label class="chk">
+        <input type="checkbox" required />
+        <span>I agree to Terms & Privacy Policy</span>
+      </label>
+
+      <button class="btn" type="submit">Sign Up</button>
+
+      <div class="small">
+        Already have an account? <a href="login.html">Log In</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="mini-foot">© 2025 Frontline • Privacy • Terms</div>
+</div>
+
+<script>
+  const p = new URLSearchParams(location.search);
+  const msg = document.getElementById("msg");
+  if (p.get("err")) { msg.textContent = p.get("err"); msg.style.display = "block"; }
+
+  function checkPass(){
+    const a = document.getElementById("p1").value;
+    const b = document.getElementById("p2").value;
+    if(a !== b){
+      msg.textContent = "Password does not match!";
+      msg.style.display = "block";
+      return false;
+    }
+    return true;
+  }
+</script>
+
+</body>
+</html>
