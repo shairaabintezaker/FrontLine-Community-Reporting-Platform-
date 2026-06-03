@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Report Monitor • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="community-pro.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar"><div class="brand"><i></i>Frontline</div><nav class="nav"><a href="home.html">Home</a><a href="services.html">Services</a><a class="on" href="authority.html">Report Monitor</a><a href="leaderboard.html">Leaderboard</a></nav></div></header>
+<main class="wrap main">
+  <div class="pagehead"><div><div class="breadcrumb"><b>Platform</b> / Report Monitor</div><div class="title">Live Report Monitor</div><div class="sub">All submitted reports appear here from the database. Status updates are saved and visible to other logged-in users.</div></div><span class="pill p-ok">Database Live</span></div>
+  <section class="card">
+    <div class="feed-top">
+      <div><h2>All Reports</h2><p class="muted">Search reports, filter service/status, and update progress.</p></div>
+      <div class="tools">
+        <input class="in search" id="authoritySearch" type="text" placeholder="Search title, location, details">
+        <select class="in sort" id="authorityService"><option value="All">All services</option><option value="community">Community</option><option value="traffic">Traffic</option><option value="waste">Waste</option><option value="emergency">Emergency</option><option value="public-safety">Public Safety</option><option value="sustainable">Sustainable</option></select>
+        <select class="in sort" id="authorityStatus"><option value="All">All status</option><option>Open</option><option>In Progress</option><option>Resolved</option></select>
+      </div>
+    </div>
+    <div id="authorityMsg" class="note" style="display:none"></div>
+    <div id="authorityList"><div class="muted" style="padding:12px">Loading reports...</div></div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Report Monitor</span></div></footer>
+<script src="authority.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>
