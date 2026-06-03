@@ -1,0 +1,16 @@
+body{--a:#2aa56a;--a2:#d05595;--bg1:#eafdf2;--bg2:#fff1f7;--bg3:#f5edff}
+.wallet{
+  border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.72);
+  box-shadow:var(--sh);padding:16px;display:flex;justify-content:space-between;gap:12px;align-items:flex-end;
+}
+.wallet b{display:block;font-size:22px}
+.wallet small{color:var(--mut);font-weight:700}
+.prog{margin-top:10px}
+.prog .bar{height:12px;border-radius:999px;border:1px solid var(--line);background:#fff;overflow:hidden}
+.prog .bar i{display:block;height:100%;width:48%;background:linear-gradient(90deg,var(--a),var(--a2))}
+.prog .txt{display:flex;justify-content:space-between;margin-top:8px;color:var(--mut);font-weight:800;font-size:13px}
+.shop{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.item b{display:block}
+.item span{display:block;margin-top:6px;color:var(--mut);font-weight:700}
+@media(max-width:980px){.shop{grid-template-columns:1fr}}

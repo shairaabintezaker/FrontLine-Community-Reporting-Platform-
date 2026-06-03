@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rewards • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="rewards.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar"><div class="brand"><i></i>Frontline</div><nav class="nav"><a href="home.html">Home</a><a href="services.html">Services</a><a href="leaderboard.html">Leaderboard</a><a class="on" href="rewards.html">Rewards</a></nav></div></header>
+<main class="wrap main">
+  <div class="pagehead"><div><div class="breadcrumb"><b>Platform</b> / Rewards</div><div class="title">Rewards & Points</div><div class="sub">Points, badges, rank, and level are calculated from database activity.</div></div><span class="pill p-ok" id="profileLevel">Loading...</span></div>
+  <section class="grid3">
+    <div class="card"><h2>Name</h2><p id="profileName">Loading...</p></div>
+    <div class="card"><h2>Your Points</h2><p><b id="profilePoints">0</b> points</p></div>
+    <div class="card"><h2>Your Rank</h2><p><b id="profileRank">—</b></p></div>
+  </section>
+  <section class="grid2" style="margin-top:12px">
+    <div class="card"><h2>Earned Badges</h2><p class="muted">Badges unlock from reporting, events, donations, and feedback.</p><div class="badge-list" id="badgeList"><span class="pill p-info">Loading...</span></div></div>
+    <div class="card"><h2>Your Activity</h2><div class="list" id="profileStats"><div class="row"><span class="muted">Loading...</span></div></div></div>
+  </section>
+  <section class="grid2" style="margin-top:12px">
+    <div class="card"><h2>How to Earn Points</h2><div class="list"><div class="row"><span>Submit community, traffic, waste, safety, or green report</span><b>+10</b></div><div class="row"><span>Submit emergency report</span><b>+20</b></div><div class="row"><span>Create event</span><b>+25</b></div><div class="row"><span>Mark Going on an event</span><b>+10 once</b></div></div></div>
+    <div class="card"><h2>Reward Levels</h2><div class="list"><div class="row"><span>Helper</span><b>30+</b></div><div class="row"><span>Trusted Contributor</span><b>100+</b></div><div class="row"><span>Active Helper</span><b>250+</b></div><div class="row"><span>Community Leader</span><b>500+</b></div></div></div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Rewards</span></div></footer>
+<script src="profile.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>

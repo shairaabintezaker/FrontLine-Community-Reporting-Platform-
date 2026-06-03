@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Emergency • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="emergency.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <div class="brand"><i></i>Frontline</div>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a><a class="on" href="emergency.html">Emergency</a><a href="public-safety.html">Safety</a><a href="authority.html">Monitor</a></nav>
+</div></header>
+<main class="wrap main">
+  <div class="pagehead">
+    <div>
+      <div class="breadcrumb"><b>Services</b> / Emergency</div>
+      <div class="title">Emergency Services</div>
+      <div class="sub">Call the national emergency hotline and submit urgent reports that appear in the live report monitor.</div>
+    </div>
+    <span class="pill p-warn">Be Calm • Act Fast</span>
+  </div>
+  <section class="grid2">
+    <div class="card sos">
+      <h2>One-tap Emergency Call</h2>
+      <p class="muted">This button opens the national emergency number on supported devices.</p>
+      <div class="sosBox">
+        <div>
+          <b>Emergency Hotline</b>
+          <div class="muted" style="margin-top:4px">Medical / Accident / Fire / Police</div>
+        </div>
+        <button type="button" onclick="location.href='tel:999'">CALL 999</button>
+      </div>
+      <hr>
+      <h2>Quick Incident Report</h2>
+      <form class="form" action="report_submit.php" method="POST">
+        <input type="hidden" name="service" value="emergency">
+        <input type="hidden" name="return" value="emergency.html">
+        <input class="in" name="title" placeholder="Title (ex: Accident near bridge)" required>
+        <select class="in" name="type" required>
+          <option value="">Type</option>
+          <option>Medical</option>
+          <option>Fire</option>
+          <option>Police</option>
+          <option>Accident</option>
+          <option>Other</option>
+        </select>
+        <input class="in" name="location" placeholder="Location (Area / Landmark)" required>
+        <textarea class="in ta" name="details" placeholder="Short details..." required></textarea>
+        <button class="btn full" type="submit">Submit Emergency Report</button>
+      </form>
+    </div>
+    <aside class="stack">
+      <div class="card">
+        <h2>Hotlines</h2>
+        <div class="list">
+          <a class="row" href="tel:999"><span>National Emergency</span><b>999</b></a>
+          <a class="row" href="tel:100"><span>Police</span><b>100</b></a>
+          <a class="row" href="tel:199"><span>Fire Service</span><b>199</b></a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Emergency Report Flow</h2>
+        <div class="list">
+          <div class="row"><span>Submit urgent report</span><b>+20 pts</b></div>
+          <div class="row"><span>Appears in report monitor</span><b>Live</b></div>
+          <div class="row"><span>Status can be updated</span><b>Track</b></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+  <section class="card" style="margin-top:12px">
+    <h2>Recent Emergency Reports</h2>
+    <div id="recentReports" data-service-filter="emergency"></div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Emergency</span></div></footer>
+<script src="reports.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>
