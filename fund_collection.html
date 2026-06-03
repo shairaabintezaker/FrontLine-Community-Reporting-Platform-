@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fund Collection • Frontline</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="fund.css">
+  <link rel="stylesheet" href="polish.css" />
+</head>
+<body class="fund">
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><i></i>Frontline</div>
+    <nav class="nav">
+      <a href="home.html">Home</a>
+      <a href="services.html">Services</a>
+      <a class="on" href="fund_collection.html">Fund</a>
+      <a href="leaderboard.html">Leaderboard</a>
+    </nav>
+    <div class="nav">
+      <a class="btn ghost" href="logout.php">Logout</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap main">
+  <div class="fund-head">
+    <div>
+      <div class="breadcrumb"><b>Services</b> / Fund Collection</div>
+      <div class="title">Village Development Fund</div>
+      <div class="sub">Record community fund contributions for road repair, clean water, school support, and emergency help.</div>
+    </div>
+    <div class="fund-badges">
+      <span class="pill p-ok">Transparency</span>
+      <span class="pill p-info">Community-led</span>
+    </div>
+  </div>
+
+  <section class="fund-campaign card">
+    <div class="camp-left">
+      <div class="camp-top">
+        <div>
+          <b class="camp-title">Monthly Campaign</b>
+          <div class="muted">Goal based progress. Donations recorded with purpose.</div>
+        </div>
+        <span class="pill p-info" id="totalBox">Total: ৳0</span>
+      </div>
+
+      <div class="camp-stats">
+        <div class="mini"><div class="muted">Goal</div><b>৳ 50,00,000</b></div>
+        <div class="mini"><div class="muted">Priority</div><b>Road + Water</b></div>
+        <div class="mini"><div class="muted">Update</div><b>Weekly</b></div>
+      </div>
+
+      <div class="prog">
+        <div class="bar"><i id="goalBar"></i></div>
+        <div class="prog-txt">
+          <span class="muted">Progress based on total collection</span>
+          <span class="muted">Target ৳50,00,000</span>
+        </div>
+      </div>
+
+      <div class="camp-note">
+        <b>Latest admin note:</b>
+        <span class="muted">Funds will be used only for selected public works. Donation list is visible below.</span>
+      </div>
+    </div>
+
+    <div class="camp-right">
+      <div class="receipt">
+        <div class="r-top">
+          <b>Donation Record Preview</b>
+          <span class="pill p-ok">Preview</span>
+        </div>
+        <div class="r-line"><span class="muted">Campaign</span><b>Village Fund</b></div>
+        <div class="r-line"><span class="muted">Purpose</span><b id="rPurpose">—</b></div>
+        <div class="r-line"><span class="muted">Amount</span><b id="rAmount">৳0</b></div>
+      </div>
+
+      <div class="trust">
+        <div class="t"><b>Recorded</b><span class="muted">Saved in database</span></div>
+        <div class="t"><b>Purpose-wise</b><span class="muted">Tracked by category</span></div>
+        <div class="t"><b>Visible</b><span class="muted">Recent donors list</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid2" style="margin-top:12px">
+    <section class="card">
+      <div class="secHead">
+        <h2>Record Contribution</h2>
+        <span class="pill p-warn">Min ৳10</span>
+      </div>
+
+      <div class="quick">
+        <button class="chip" type="button" onclick="setAmt(100)">৳100</button>
+        <button class="chip" type="button" onclick="setAmt(200)">৳200</button>
+        <button class="chip" type="button" onclick="setAmt(500)">৳500</button>
+        <button class="chip" type="button" onclick="setAmt(1000)">৳1000</button>
+      </div>
+
+      <form class="form" onsubmit="return donate();">
+        <label>Amount (৳)</label>
+        <input class="in" id="amt" type="number" min="10" placeholder="ex: 200" required oninput="previewReceipt()">
+
+        <label>Purpose</label>
+        <select class="in" id="purpose" required onchange="previewReceipt()">
+          <option value="">Select</option>
+          <option>Road Repair</option>
+          <option>Clean Water</option>
+          <option>School Support</option>
+          <option>Health Camp</option>
+          <option>Tree Plantation</option>
+          <option>Emergency Help</option>
+        </select>
+
+        <label>Note (optional)</label>
+        <input class="in" id="note" type="text" placeholder="ex: For road near market">
+
+        <button class="btn full" type="submit">Record Donation</button>
+      </form>
+
+      <div class="small muted" id="fundMsg" style="margin-top:10px"></div>
+    </section>
+
+    <aside class="stack">
+      <section class="card">
+        <div class="secHead">
+          <h2>Purpose Summary</h2>
+          <span class="pill p-info">Live</span>
+        </div>
+        <div class="list" id="purposeList">
+          <div class="row"><span class="muted">Loading...</span></div>
+        </div>
+        <div class="util">
+          <b>Planned Utilization</b>
+          <div class="muted">Road materials, water filters, school supplies, emergency relief.</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="secHead">
+          <h2>Fund Rules</h2>
+          <span class="pill p-ok">Simple</span>
+        </div>
+        <div class="list">
+          <div class="row"><span>Minimum donation</span><b>৳10</b></div>
+        </div>
+      </section>
+    </aside>
+  </section>
+
+  <section class="card" style="margin-top:12px">
+    <div class="secHead">
+      <h2>Recent Donations</h2>
+      <span class="pill p-info">Latest</span>
+    </div>
+    <div class="don-list" id="donationList">
+      <div class="row"><span class="muted">Loading...</span></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap fbar">
+    <span>© 2025 Frontline</span>
+    <span>Fund Collection</span>
+  </div>
+</footer>
+
+<script src="fund.js"></script>
+<script>
+  function setAmt(v){
+    document.getElementById("amt").value = v;
+    previewReceipt();
+  }
+  function previewReceipt(){
+    var a = document.getElementById("amt").value || 0;
+    var p = document.getElementById("purpose").value || "—";
+    document.getElementById("rAmount").innerText = "৳" + a;
+    document.getElementById("rPurpose").innerText = p;
+  }
+  function setGoalBar(total){
+    var target = 5000000; // 50,00,000
+    var pct = Math.min(100, Math.round((total/target) * 100));
+    document.getElementById("goalBar").style.width = pct + "%";
+  }
+</script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body>
+</html>
