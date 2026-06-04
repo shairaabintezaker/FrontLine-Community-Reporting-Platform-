@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sustainable Development • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="sustainable.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar"><div class="brand"><i></i>Frontline</div><nav class="nav"><a href="home.html">Home</a><a href="services.html">Services</a><a class="on" href="sustainable.html">Sustainable</a><a href="events.php">Events</a></nav></div></header>
+<main class="wrap main">
+  <div class="pagehead"><div><div class="breadcrumb"><b>Services</b> / Sustainable Development</div><div class="title">Sustainable Development</div><div class="sub">Submit green ideas, environmental problems, and community improvement reports.</div></div><span class="pill p-info">Green Actions</span></div>
+  <section class="grid2">
+    <div class="card">
+      <h2>Recent Sustainable Reports</h2>
+      <p class="muted">Loaded from user submissions.</p>
+      <div id="recentReports" data-service-filter="sustainable"></div>
+    </div>
+    <aside class="stack">
+      <div class="card">
+        <h2>Submit Green Initiative</h2>
+        <form class="form" action="report_submit.php" method="POST">
+          <input type="hidden" name="service" value="sustainable">
+          <input type="hidden" name="return" value="sustainable.html">
+          <input class="in" name="title" placeholder="Title (ex: Tree planting need)" required>
+          <select class="in" name="type" required><option value="">Type</option><option>Tree Plantation</option><option>Water Saving</option><option>Drain Cleaning</option><option>Plastic Reduction</option><option>Other</option></select>
+          <input class="in" name="location" placeholder="Location" required>
+          <textarea class="in ta" name="details" placeholder="Short details..." required></textarea>
+          <button class="btn full" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="card"><h2>Project Focus</h2><div class="list"><div class="row"><span>Tree plantation</span><b>Green</b></div><div class="row"><span>Plastic reduction</span><b>Clean</b></div><div class="row"><span>Drain cleaning</span><b>Health</b></div></div></div>
+    </aside>
+  </section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Sustainable Development</span></div></footer>
+<script src="reports.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>
