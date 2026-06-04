@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Traffic • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="traffic.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <div class="brand"><i></i>Frontline</div>
+  <nav class="nav"><a href="home.html">Home</a><a href="services.html">Services</a><a class="on" href="traffic.html">Traffic</a><a href="events.php">Events</a></nav>
+</div></header>
+<main class="wrap main">
+  <div class="pagehead">
+    <div><div class="breadcrumb"><b>Services</b> / Traffic</div><div class="title">Traffic Management</div><div class="sub">Submit traffic reports and check recent traffic-related issues.</div></div>
+    <span class="pill p-warn">Traffic Reports</span>
+  </div>
+  <section class="grid2">
+    <div class="card">
+      <h2>Traffic Report Feed</h2>
+      <p class="muted">Loaded from submitted traffic reports.</p>
+      <div id="recentReports" data-service-filter="traffic"></div>
+    </div>
+    <aside class="stack">
+      <div class="card">
+        <h2>Submit Traffic Report</h2>
+        <form class="form" action="report_submit.php" method="POST">
+          <input type="hidden" name="service" value="traffic">
+          <input type="hidden" name="return" value="traffic.html">
+          <input class="in" name="title" placeholder="Title (ex: Heavy traffic near market)" required>
+          <select class="in" name="type" required>
+            <option value="">Type</option><option>Traffic Jam</option><option>Road Block</option><option>Signal Problem</option><option>Accident</option><option>Other</option>
+          </select>
+          <input class="in" name="location" placeholder="Location" required>
+          <textarea class="in ta" name="details" placeholder="Short details..." required></textarea>
+          <button class="btn full" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="card"><h2>Road Advice</h2><div class="list"><div class="row"><span>Use alternative routes during peak hours</span><b>Tip</b></div><div class="row"><span>Report blocked roads with a clear location</span><b>Tip</b></div></div></div>
+    </aside>
+  </section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Traffic</span></div></footer>
+<script src="reports.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>
