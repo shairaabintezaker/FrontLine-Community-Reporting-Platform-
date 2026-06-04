@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Public Safety • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="public-safety.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <div class="brand"><i></i>Frontline</div>
+  <nav class="nav"><a href="home.html">Home</a><a href="services.html">Services</a><a class="on" href="public-safety.html">Public Safety</a><a href="community-issues.html">Issues</a></nav>
+</div></header>
+<main class="wrap main">
+  <div class="pagehead">
+    <div><div class="breadcrumb"><b>Services</b> / Public Safety</div><div class="title">Public Safety</div><div class="sub">Submit safety alerts and view public safety reports from the database.</div></div>
+    <span class="pill p-ok">Community Safety</span>
+  </div>
+  <section class="grid2">
+    <div class="card">
+      <h2>Safety Reports</h2>
+      <p class="muted">Latest public safety reports submitted by users.</p>
+      <div id="recentReports" data-service-filter="public-safety"></div>
+    </div>
+    <aside class="stack">
+      <div class="card">
+        <h2>Report Safety Issue</h2>
+        <form class="form" action="report_submit.php" method="POST">
+          <input type="hidden" name="service" value="public-safety">
+          <input type="hidden" name="return" value="public-safety.html">
+          <input class="in" name="title" placeholder="Title (ex: Broken street light)" required>
+          <select class="in" name="type" required>
+            <option value="">Type</option><option>Suspicious Activity</option><option>Broken Light</option><option>Unsafe Area</option><option>Harassment Concern</option><option>Other</option>
+          </select>
+          <input class="in" name="location" placeholder="Location" required>
+          <textarea class="in ta" name="details" placeholder="Short details..." required></textarea>
+          <button class="btn full" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="card"><h2>Safety Tips</h2><div class="list"><div class="row"><span>Use well-lit routes</span><b>Tip</b></div><div class="row"><span>Report hazards early</span><b>Tip</b></div><div class="row"><span>Call 999 for emergencies</span><b>999</b></div></div></div>
+    </aside>
+  </section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Public Safety</span></div></footer>
+<script src="reports.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>
