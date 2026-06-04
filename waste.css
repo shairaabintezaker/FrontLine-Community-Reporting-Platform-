@@ -1,0 +1,11 @@
+body{--a:#1f915c;--a2:#9b59d6;--bg1:#f0fff7;--bg2:#f6efff;--bg3:#fff7fb}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.zone{
+  border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
+}
+.zone b{display:block}
+.zone small{color:var(--mut);font-weight:700}
+.ticket{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ticket b{display:block}
+.ticket small{color:var(--mut);font-weight:700}
