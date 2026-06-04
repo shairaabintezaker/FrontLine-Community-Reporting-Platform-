@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Waste • Frontline</title><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="waste.css">  <link rel="stylesheet" href="polish.css" />
+</head>
+<body>
+<header class="top"><div class="wrap bar"><div class="brand"><i></i>Frontline</div>
+  <nav class="nav"><a href="home.html">Home</a><a href="services.html">Services</a><a class="on" href="waste.html">Waste</a><a href="events.php">Events</a></nav>
+</div></header>
+<main class="wrap main">
+  <div class="pagehead"><div><div class="breadcrumb"><b>Services</b> / Waste</div><div class="title">Waste Management</div><div class="sub">Report waste problems and view submitted waste tickets.</div></div><span class="pill p-ok">Pickup Active</span></div>
+  <section class="grid2">
+    <div class="card">
+      <h2>Pickup Schedule</h2>
+      <p class="muted">Reference schedule for each zone.</p>
+      <div class="zones">
+        <div class="zone"><div><b>Zone A</b><small>Mon • Thu</small></div><span class="pill p-info">7 AM</span></div>
+        <div class="zone"><div><b>Zone B</b><small>Tue • Fri</small></div><span class="pill p-info">7 AM</span></div>
+        <div class="zone"><div><b>Zone C</b><small>Wed • Sat</small></div><span class="pill p-info">7 AM</span></div>
+        <div class="zone"><div><b>Zone D</b><small>Sun • Wed</small></div><span class="pill p-info">8 AM</span></div>
+      </div>
+    </div>
+    <aside class="stack">
+      <div class="card">
+        <h2>Report Waste Issue</h2>
+        <form class="form" action="report_submit.php" method="POST">
+          <input type="hidden" name="service" value="waste">
+          <input type="hidden" name="return" value="waste.html">
+          <input class="in" name="title" placeholder="Title (ex: Overflowing bin)" required>
+          <select class="in" name="type" required><option value="">Type</option><option>Overflowing Bin</option><option>Missed Pickup</option><option>Illegal Dumping</option><option>Drain Waste</option><option>Other</option></select>
+          <input class="in" name="location" placeholder="Location" required>
+          <textarea class="in ta" name="details" placeholder="Short details..." required></textarea>
+          <button class="btn full" type="submit">Submit</button>
+        </form>
+      </div>
+    </aside>
+  </section>
+  <section class="card" style="margin-top:12px"><h2>Recent Waste Tickets</h2><div id="recentReports" data-service-filter="waste"></div></section>
+</main>
+<footer class="foot"><div class="wrap fbar"><span>© 2025 Frontline</span><span>Waste</span></div></footer>
+<script src="reports.js"></script>
+<script src="auth-guard.js"></script>
+<script>protectHome();</script>
+</body></html>
