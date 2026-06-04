@@ -1,0 +1,19 @@
+body{--a:#6a5cff;--a2:#2aa56a;--bg1:#f2efff;--bg2:#e9fbf3;--bg3:#fff7fb}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.filters a,.filters button{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:800;font-size:13px;color:#444;cursor:pointer}
+.filters a.on,.filters button.on{background:rgba(122,85,214,.10);border-color:rgba(122,85,214,.22);color:#3a2a6d}
+.egrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.event{
+  border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.date{
+  width:80px;border-radius:14px;padding:10px 8px;text-align:center;
+  border:1px solid rgba(122,85,214,.20);background:rgba(122,85,214,.08);
+  font-weight:900;color:#3a2a6d;
+}
+.event b{display:block}
+.event small{color:var(--mut);font-weight:700}
+@media(max-width:980px){.egrid{grid-template-columns:1fr}}
+
+.action-pill{font-family:inherit;cursor:pointer}.event-actions{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}.note{margin-bottom:12px}
