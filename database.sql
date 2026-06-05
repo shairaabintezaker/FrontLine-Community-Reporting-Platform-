@@ -1,0 +1,127 @@
+CREATE DATABASE IF NOT EXISTS frontline_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE frontline_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR(80) NOT NULL,
+  username VARCHAR(40) NOT NULL UNIQUE,
+  email VARCHAR(120) NOT NULL UNIQUE,
+  phone VARCHAR(20),
+  password_hash VARCHAR(255) NOT NULL,
+  points INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS service_reports (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  service VARCHAR(30) NOT NULL,
+  title VARCHAR(140) NOT NULL,
+  type VARCHAR(60) NOT NULL,
+  location VARCHAR(160) NOT NULL,
+  details TEXT NOT NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'Open',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_service_status_created (service, status, created_at),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS report_feedback (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  report_id INT NOT NULL,
+  user_id INT NOT NULL,
+  rating TINYINT NOT NULL,
+  comment VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY unique_report_user_feedback (report_id, user_id),
+  FOREIGN KEY (report_id) REFERENCES service_reports(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS report_status_history (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  report_id INT NOT NULL,
+  old_status VARCHAR(20),
+  new_status VARCHAR(20) NOT NULL,
+  changed_by INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (report_id) REFERENCES service_reports(id) ON DELETE CASCADE,
+  FOREIGN KEY (changed_by) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS fund_donations (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  amount INT NOT NULL,
+  purpose VARCHAR(60) NOT NULL,
+  note VARCHAR(200),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_donation_created (created_at),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS events (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  organizer_id INT NOT NULL,
+  title VARCHAR(140) NOT NULL,
+  type VARCHAR(60) NOT NULL DEFAULT 'Upcoming',
+  event_date DATE NOT NULL,
+  event_time TIME NOT NULL,
+  location VARCHAR(160) NOT NULL,
+  details TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_event_date_type (event_date, type),
+  FOREIGN KEY (organizer_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS event_responses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event_id INT NOT NULL,
+  user_id INT NOT NULL,
+  response_type ENUM('Going', 'Interested') NOT NULL,
+  responded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY unique_event_user_response (event_id, user_id),
+  FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS event_points (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event_id INT NOT NULL,
+  user_id INT NOT NULL,
+  action VARCHAR(30) NOT NULL,
+  points INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY unique_event_points (event_id, user_id, action),
+  FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/* Compatibility tables for older community issue files. The main project now uses service_reports. */
+CREATE TABLE IF NOT EXISTS issues (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  title VARCHAR(140) NOT NULL,
+  category VARCHAR(40) NOT NULL,
+  location VARCHAR(140) NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS issue_ratings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  issue_id INT NOT NULL,
+  rater_id INT NOT NULL,
+  rating TINYINT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY unique_issue_rater (issue_id, rater_id),
+  FOREIGN KEY (issue_id) REFERENCES issues(id) ON DELETE CASCADE,
+  FOREIGN KEY (rater_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
